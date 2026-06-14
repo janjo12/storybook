@@ -3,7 +3,7 @@ import { fireEvent, screen } from "@testing-library/react-native";
 import { EmptyState } from "@/components/empty-state";
 import { ErrorState } from "@/components/error-state";
 import { SkeletonStory } from "@/components/skeleton-story";
-import { renderWithTheme } from "../../test-utils";
+import { renderWithTheme } from "../test-utils";
 
 describe("state components", () => {
   it("renders an empty state and calls its action", async () => {

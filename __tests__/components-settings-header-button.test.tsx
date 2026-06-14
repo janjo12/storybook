@@ -2,7 +2,7 @@ import { fireEvent, screen } from "@testing-library/react-native";
 
 import { BackHeaderButton } from "@/components/back-header-button";
 import { SettingsHeaderButton } from "@/components/settings-header-button";
-import { renderWithTheme } from "../../test-utils";
+import { renderWithTheme } from "../test-utils";
 
 const { __mockRouter } = jest.requireMock("expo-router") as {
   __mockRouter: {

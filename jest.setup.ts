@@ -23,3 +23,23 @@ jest.mock("expo-router", () => {
 jest.mock("expo-status-bar", () => ({
   StatusBar: () => null,
 }));
+
+jest.mock("@react-native-async-storage/async-storage", () => {
+  let storage: Record<string, string> = {};
+
+  return {
+    clear: jest.fn(() => {
+      storage = {};
+      return Promise.resolve();
+    }),
+    getItem: jest.fn((key: string) => Promise.resolve(storage[key] ?? null)),
+    removeItem: jest.fn((key: string) => {
+      delete storage[key];
+      return Promise.resolve();
+    }),
+    setItem: jest.fn((key: string, value: string) => {
+      storage[key] = value;
+      return Promise.resolve();
+    }),
+  };
+});

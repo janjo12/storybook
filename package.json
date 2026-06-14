@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@expo/ui": "~56.0.16",
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "expo": "~56.0.9",
     "expo-constants": "~56.0.17",
     "expo-device": "~56.0.4",
@@ -49,6 +50,10 @@
   },
   "jest": {
     "preset": "jest-expo",
+    "testMatch": [
+      "<rootDir>/__tests__/**/*.test.ts",
+      "<rootDir>/__tests__/**/*.test.tsx"
+    ],
     "testTimeout": 20000,
     "setupFilesAfterEnv": [
       "<rootDir>/jest.setup.ts"

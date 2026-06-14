@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as React from "react";
 
 export type ThemeId =
@@ -127,9 +128,35 @@ export const ThemeContext = React.createContext<ThemeContextValue>({
   theme: themes[0],
 });
 
+const THEME_STORAGE_KEY = "storybook.theme";
+
+function isThemeId(value: string | null): value is ThemeId {
+  return themes.some((theme) => theme.id === value);
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [themeId, setTheme] = React.useState<ThemeId>("paper-trail");
+  const [themeId, setThemeId] = React.useState<ThemeId>("paper-trail");
   const theme = themes.find((item) => item.id === themeId) ?? themes[0];
+  const setTheme = React.useCallback((nextThemeId: ThemeId) => {
+    setThemeId(nextThemeId);
+    AsyncStorage.setItem(THEME_STORAGE_KEY, nextThemeId).catch(() => undefined);
+  }, []);
+
+  React.useEffect(() => {
+    let mounted = true;
+
+    AsyncStorage.getItem(THEME_STORAGE_KEY)
+      .then((storedThemeId) => {
+        if (mounted && isThemeId(storedThemeId)) {
+          setThemeId(storedThemeId);
+        }
+      })
+      .catch(() => undefined);
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ setTheme, theme }}>

@@ -33,25 +33,3 @@ export function StorySegmentCard({ text, title }: StorySegmentCardProps) {
     </View>
   );
 }
-
-/*
-export function SurfaceCard({ children }: { children: React.ReactNode }) {
-  const { theme } = React.use(ThemeContext);
-  const colors = theme.colors;
-
-  return (
-    <View
-      style={{
-        backgroundColor: colors.surface,
-        borderColor: colors.border,
-        borderRadius: 8,
-        borderWidth: 1,
-        gap: 14,
-        padding: 18,
-      }}
-    >
-      {children}
-    </View>
-  );
-}
-*/

@@ -6,7 +6,6 @@ import { ThemeContext, themes } from "@/context/theme-context";
 
 export default function SettingsScreen() {
   const { setTheme, theme } = React.use(ThemeContext);
-  const colors = theme.colors;
 
   return (
     <ScreenShell contentContainerStyle={{ gap: 16, padding: 20, paddingBottom: 36 }}>
